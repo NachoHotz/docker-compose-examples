@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      DATABASE_HOST: 127.0.0.1
+      POSTGRES_USER: nacho
+      POSTGRES_PASSWORD: sempron
+      POSTGRES_DB: test
+
+  adminer:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'juanhotz611@gmail.com'
+      PGADMIN_DEFAULT_PASSWORD: 'admin'
+    depends_on:
+      - db

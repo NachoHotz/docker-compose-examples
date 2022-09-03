@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    image: wordpress
+    restart: always
+    ports:
+      - '8089:80'
+    depends_on:
+      - mysql
+    environment:
+      WORDPRESS_DB_HOST: '${WORDPRESS_DB_HOST}'
+      WORDPRESS_DB_USER: '${WORDPRESS_DB_USER}'
+      WORDPRESS_DB_PASSWORD: '${WORDPRESS_DB_PASSWORD}'
+      WORDPRESS_DB_NAME: '${WORDPRESS_DB_NAME}'
+    volumes:
+      - ./wordpress-backup:/var/www/html
+
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+    volumes:
+      - ./mysql-backup:/var/lib/mysql
