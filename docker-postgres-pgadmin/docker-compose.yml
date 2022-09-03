@@ -7,10 +7,10 @@ services:
     ports:
       - 5432:5432
     environment:
-      DATABASE_HOST: 127.0.0.1
-      POSTGRES_USER: nacho
-      POSTGRES_PASSWORD: sempron
-      POSTGRES_DB: test
+      DATABASE_HOST: '${DATABASE_HOST}'
+      POSTGRES_USER: '${POSTGRES_USER}'
+      POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
+      POSTGRES_DB: '${POSTGRES_DB}'
 
   adminer:
     image: dpage/pgadmin4
@@ -18,7 +18,7 @@ services:
     ports:
       - 80:80
     environment:
-      PGADMIN_DEFAULT_EMAIL: 'juanhotz611@gmail.com'
-      PGADMIN_DEFAULT_PASSWORD: 'admin'
+      PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL}'
+      PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD}'
     depends_on:
       - db
